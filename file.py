@@ -1,5 +1,6 @@
 from tkinter import *
 from Ball import *
+from Paddle import *
 import time
 
 tk = Tk()
@@ -10,10 +11,13 @@ canvas = Canvas(tk, width=500, height=500, bd=0, highlightthickness=0)
 canvas.pack()
 tk.update()
 
-ball = Ball(canvas, 'red')
+paddle = Paddle(canvas, 'blue')
+ball = Ball(canvas, paddle, 'red')
 
 while 1:
-    ball.draw()
+    if ball.hit_bottom == False:
+        ball.draw()
+        paddle.draw()
     tk.update_idletasks()
     tk.update()
     time.sleep(0.01)
